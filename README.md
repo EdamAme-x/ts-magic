@@ -2,7 +2,7 @@
 
 Type-level programming in TypeScript. No runtime, just types.
 
-An experiment to push TypeScript's type system to its limits — building integers, arithmetic, strings, arrays, and eventually a Brainfuck interpreter, all at the type level.
+An experiment to push TypeScript's type system to its limits — building integers, arithmetic, strings, arrays, a virtual machine, and a Brainfuck interpreter, all at the type level.
 
 ## Install
 
@@ -91,6 +91,44 @@ type R = TSMagic.Obj.Merge<A, B>;  // { a: 1; b: 3; c: 4 }
 type V = TSMagic.Obj.Get<R, "c">;  // 4
 ```
 
+### VM (Type-Level Virtual Machine)
+
+Define custom instruction sets and run programs entirely at the type level.
+
+```ts
+import type { TSMagic } from "ts-magic";
+import type { TypeFn } from "ts-magic";
+import type { NatAdd } from "ts-magic/utils/number";
+
+// 1. Define instructions
+type Push<N extends number> = { readonly op: "push"; readonly n: N };
+type Halt = { readonly op: "halt" };
+
+// 2. Implement handler (TypeFn)
+interface MyLang extends TypeFn {
+  output: this["input"] extends {
+    instr: infer I;
+    state: infer S extends TSMagic.VM.VMState;
+  }
+    ? I extends Push<infer N>
+      ? TSMagic.VM.WithPC<
+          TSMagic.VM.WithStack<S, [N, ...S["stack"]]>,
+          NatAdd<S["pc"], 1>
+        >
+      : I extends Halt
+        ? TSMagic.VM.WithHalted<S>
+        : TSMagic.VM.WithHalted<S>
+    : never;
+}
+
+// 3. Run
+type Program = [Push<3>, Push<4>, Halt];
+type Result = TSMagic.VM.Run<MyLang, Program, TSMagic.VM.CreateState>;
+// Result["stack"] is [4, 3]
+```
+
+See `examples/bf/` for a complete Brainfuck interpreter built on the VM.
+
 ### HKT (Higher-Kinded Types)
 
 ```ts
@@ -117,6 +155,13 @@ type R = TSMagic.Arr.Map<[1, 2, 3], ToStr>;  // ["1", "2", "3"]
 | `TSMagic.Str` | String ops (Split, Join, Replace, Trim, ParseInt, etc.) |
 | `TSMagic.Arr` | Array ops (Map, Filter, Reduce, Slice, Zip, Unique, etc.) |
 | `TSMagic.Obj` | Object ops (Get, Set, Merge, Pick, MapValues, etc.) |
+| `TSMagic.VM` | Type-level VM (State, Memory, Dispatch, Step, Run) |
+
+## Examples
+
+| Example | Description |
+|---------|-------------|
+| `examples/bf/` | Brainfuck interpreter built on TSMagic.VM |
 
 ## Roadmap
 
@@ -131,15 +176,17 @@ type R = TSMagic.Arr.Map<[1, 2, 3], ToStr>;  // ["1", "2", "3"]
 - [x] Array (Map, Filter, Reduce, Zip, Unique, Flat, etc.)
 - [x] Object (Get, Set, Merge, Pick, MapValues, etc.)
 - [x] HKT (Higher-Kinded Types for Map/Filter/Reduce)
-- [ ] Brainfuck interpreter
+- [x] VM (type-level virtual machine)
+- [x] Brainfuck interpreter (example)
 
 ## Development
 
 ```bash
 bun install
-bun run test       # Type check (tsc --noEmit)
+bun run test       # Type check (tsgo --noEmit)
 bun run lint       # Biome lint
 bun run build      # Build ESM/CJS/types
+bun run codegen    # Regenerate IntN from template
 ```
 
 ## License
