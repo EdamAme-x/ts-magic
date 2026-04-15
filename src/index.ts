@@ -10,6 +10,7 @@ import type * as _Obj from "./object/index.js";
 import type * as _Str from "./string/index.js";
 import type * as _UInt8 from "./uint8/index.js";
 import type * as _Utils from "./utils/index.js";
+import type * as _VM from "./vm/index.js";
 
 export declare namespace TSMagic {
 	// --- Utils ---
@@ -248,5 +249,43 @@ export declare namespace TSMagic {
 		export type Add<A extends Float, B extends Float> = _Float.Add<A, B>;
 		export type Sub<A extends Float, B extends Float> = _Float.Sub<A, B>;
 		export type Negate<A extends Float> = _Float.Negate<A>;
+	}
+
+	// --- VM ---
+	export namespace VM {
+		export type VMState = _VM.VMState;
+		export type Instruction = _VM.Instruction;
+		export type InstructionSet = _VM.InstructionSet;
+		export type CreateState<
+			Mem extends object = Record<string, never>,
+			Input extends readonly unknown[] = [],
+		> = _VM.CreateState<Mem, Input>;
+		export type WithPC<S extends VMState, N extends number> = _VM.WithPC<S, N>;
+		export type WithMemory<S extends VMState, M extends object> = _VM.WithMemory<S, M>;
+		export type WithMp<S extends VMState, N extends number> = _VM.WithMp<S, N>;
+		export type WithStack<S extends VMState, St extends readonly unknown[]> = _VM.WithStack<S, St>;
+		export type WithInput<S extends VMState, I extends readonly unknown[]> = _VM.WithInput<S, I>;
+		export type WithOutput<S extends VMState, O extends readonly unknown[]> = _VM.WithOutput<S, O>;
+		export type WithHalted<S extends VMState> = _VM.WithHalted<S>;
+		export type SparseMemory = _VM.SparseMemory;
+		export type MemRead<M extends SparseMemory, Addr extends number, Zero> = _VM.MemRead<M, Addr, Zero>;
+		export type MemWrite<M extends SparseMemory, Addr extends number, Val> = _VM.MemWrite<M, Addr, Val>;
+		export type Step<IS extends InstructionSet, Prog extends readonly Instruction[], S extends VMState> = _VM.Step<
+			IS,
+			Prog,
+			S
+		>;
+		export type Run<IS extends InstructionSet, Prog extends readonly Instruction[], S extends VMState> = _VM.Run<
+			IS,
+			Prog,
+			S
+		>;
+		export type Dispatch<
+			IS extends InstructionSet,
+			S extends VMState,
+			Prog extends readonly Instruction[],
+		> = _VM.Dispatch<IS, S, Prog>;
+		export type SplitChars<S extends string> = _VM.SplitChars<S>;
+		export type FilterChars<T extends readonly string[], Allowed extends string> = _VM.FilterChars<T, Allowed>;
 	}
 }
