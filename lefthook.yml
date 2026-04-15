@@ -3,6 +3,6 @@ pre-commit:
   commands:
     lint:
       glob: "*.{ts,tsx,js,jsx,json}"
-      run: bunx biome check --no-errors-on-unmatched {staged_files}
+      run: ./node_modules/.bin/biome check --no-errors-on-unmatched {staged_files}
     typecheck:
       run: bun run typecheck

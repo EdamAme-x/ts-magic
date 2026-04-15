@@ -59,7 +59,7 @@ export type Abs<A extends Int8> = Unwrap<A>[0] extends 1 ? Negate<A> : A;
 
 import type { Expect, IsEqual } from "../utils/assert.js";
 import type { FromNumber, ToNumber } from "./convert.js";
-import type { MinusOne, Zero } from "./int8.js";
+import type { Zero } from "./int8.js";
 
 type _AddTest = Expect<IsEqual<ToNumber<Add<FromNumber<3>, FromNumber<5>>>, 8>>;
 type _SubTest = Expect<IsEqual<ToNumber<Sub<FromNumber<10>, FromNumber<3>>>, 7>>;
@@ -68,4 +68,4 @@ type _IncTest = Expect<IsEqual<ToNumber<Inc<FromNumber<5>>>, 6>>;
 type _DecTest = Expect<IsEqual<ToNumber<Dec<FromNumber<5>>>, 4>>;
 type _AbsTest = Expect<IsEqual<ToNumber<Abs<FromNumber<-42>>>, 42>>;
 type _AddZero = Expect<IsEqual<ToNumber<Add<Zero, Zero>>, 0>>;
-type _Add100_27 = Expect<IsEqual<ToNumber<Add<FromNumber<100>, FromNumber<27>>>, 127>>;
+type _AddSum = Expect<IsEqual<ToNumber<Add<FromNumber<100>, FromNumber<27>>>, 127>>;

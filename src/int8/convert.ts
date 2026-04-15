@@ -57,6 +57,6 @@ import type { Expect, IsEqual } from "../utils/assert.js";
 
 type _RoundTrip0 = Expect<IsEqual<ToNumber<FromNumber<0>>, 0>>;
 type _RoundTrip3 = Expect<IsEqual<ToNumber<FromNumber<3>>, 3>>;
-type _RoundTrip127 = Expect<IsEqual<ToNumber<FromNumber<127>>, 127>>;
 type _RoundTripNeg1 = Expect<IsEqual<ToNumber<FromNumber<-1>>, -1>>;
 type _RoundTripNeg42 = Expect<IsEqual<ToNumber<FromNumber<-42>>, -42>>;
+type _RoundTrip127 = Expect<IsEqual<ToNumber<FromNumber<127>>, 127>>;
