@@ -163,22 +163,6 @@ type R = TSMagic.Arr.Map<[1, 2, 3], ToStr>;  // ["1", "2", "3"]
 |---------|-------------|
 | `examples/bf/` | Brainfuck interpreter built on TSMagic.VM |
 
-## Roadmap
-
-- [x] Bool (full boolean logic with Xor, Nand, Nor, Implies)
-- [x] Nat (natural numbers, Mul/Div/Mod/Pow)
-- [x] Int (arbitrary signed integers)
-- [x] Int8 (8-bit signed, bitwise operations)
-- [x] UInt8 (8-bit unsigned, bitwise operations)
-- [x] Float (fixed-point decimal)
-- [x] Char/ASCII (bidirectional table, classification)
-- [x] String (Split, Join, Replace, Trim, ParseInt, etc.)
-- [x] Array (Map, Filter, Reduce, Zip, Unique, Flat, etc.)
-- [x] Object (Get, Set, Merge, Pick, MapValues, etc.)
-- [x] HKT (Higher-Kinded Types for Map/Filter/Reduce)
-- [x] VM (type-level virtual machine)
-- [x] Brainfuck interpreter (example)
-
 ## Development
 
 ```bash
