@@ -1,15 +1,15 @@
 import type { BitAnd, BitNot, BitOr, BitXor } from "../internal/bit.js";
-import type { Int8, Unwrap, Wrap } from "./int8.js";
+import type { Int8, Int8Bits, Unwrap, Wrap } from "./int8.js";
 
-export type BitwiseNot<A extends Int8> = Unwrap<A> extends infer B extends [any, any, any, any, any, any, any, any]
+export type BitwiseNot<A extends Int8> = Unwrap<A> extends infer B extends Int8Bits
 	? Wrap<
 			[BitNot<B[0]>, BitNot<B[1]>, BitNot<B[2]>, BitNot<B[3]>, BitNot<B[4]>, BitNot<B[5]>, BitNot<B[6]>, BitNot<B[7]>]
 		>
 	: never;
 
 export type BitwiseAnd<A extends Int8, B extends Int8> = [Unwrap<A>, Unwrap<B>] extends [
-	infer X extends [any, any, any, any, any, any, any, any],
-	infer Y extends [any, any, any, any, any, any, any, any],
+	infer X extends Int8Bits,
+	infer Y extends Int8Bits,
 ]
 	? Wrap<
 			[
@@ -26,8 +26,8 @@ export type BitwiseAnd<A extends Int8, B extends Int8> = [Unwrap<A>, Unwrap<B>] 
 	: never;
 
 export type BitwiseOr<A extends Int8, B extends Int8> = [Unwrap<A>, Unwrap<B>] extends [
-	infer X extends [any, any, any, any, any, any, any, any],
-	infer Y extends [any, any, any, any, any, any, any, any],
+	infer X extends Int8Bits,
+	infer Y extends Int8Bits,
 ]
 	? Wrap<
 			[
@@ -44,8 +44,8 @@ export type BitwiseOr<A extends Int8, B extends Int8> = [Unwrap<A>, Unwrap<B>] e
 	: never;
 
 export type BitwiseXor<A extends Int8, B extends Int8> = [Unwrap<A>, Unwrap<B>] extends [
-	infer X extends [any, any, any, any, any, any, any, any],
-	infer Y extends [any, any, any, any, any, any, any, any],
+	infer X extends Int8Bits,
+	infer Y extends Int8Bits,
 ]
 	? Wrap<
 			[
@@ -61,24 +61,15 @@ export type BitwiseXor<A extends Int8, B extends Int8> = [Unwrap<A>, Unwrap<B>] 
 		>
 	: never;
 
-export type ShiftLeft<A extends Int8> = Unwrap<A> extends infer B extends [any, any, any, any, any, any, any, any]
+export type ShiftLeft<A extends Int8> = Unwrap<A> extends infer B extends Int8Bits
 	? Wrap<[B[1], B[2], B[3], B[4], B[5], B[6], B[7], 0]>
 	: never;
 
-export type ShiftRight<A extends Int8> = Unwrap<A> extends infer B extends [any, any, any, any, any, any, any, any]
+export type ShiftRight<A extends Int8> = Unwrap<A> extends infer B extends Int8Bits
 	? Wrap<[B[0], B[0], B[1], B[2], B[3], B[4], B[5], B[6]]>
 	: never;
 
-export type LogicalShiftRight<A extends Int8> = Unwrap<A> extends infer B extends [
-	any,
-	any,
-	any,
-	any,
-	any,
-	any,
-	any,
-	any,
-]
+export type LogicalShiftRight<A extends Int8> = Unwrap<A> extends infer B extends Int8Bits
 	? Wrap<[0, B[0], B[1], B[2], B[3], B[4], B[5], B[6]]>
 	: never;
 
