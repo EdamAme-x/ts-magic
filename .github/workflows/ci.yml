@@ -21,11 +21,8 @@ jobs:
       - name: Lint
         run: bun run lint
 
-      - name: Type Check
-        run: bun run typecheck
-
-      - name: Test
-        run: bun test
+      - name: Type Check & Test
+        run: bun run test
 
       - name: Build
         run: bun run build

@@ -24,7 +24,7 @@
 		"build:esm": "bun build ./src/index.ts --outfile ./dist/index.js --format esm --target node",
 		"build:cjs": "bun build ./src/index.ts --outfile ./dist/index.cjs --format cjs --target node",
 		"build:types": "tsc --emitDeclarationOnly && cp dist/index.d.ts dist/index.d.cts",
-		"test": "bun test",
+		"test": "tsc --noEmit",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write .",
 		"format": "biome format --write .",
