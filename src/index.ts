@@ -1,11 +1,14 @@
 import type * as _Arr from "./array/index.js";
+import type * as _Bool from "./bool/index.js";
 import type * as _Char from "./char/index.js";
+import type * as _Float from "./float/index.js";
 import type * as _Int from "./int/index.js";
 import type * as _Int8 from "./int8/index.js";
 import type * as _Internal from "./internal/index.js";
 import type * as _Nat from "./nat/index.js";
 import type * as _Obj from "./object/index.js";
 import type * as _Str from "./string/index.js";
+import type * as _UInt8 from "./uint8/index.js";
 import type * as _Utils from "./utils/index.js";
 
 export declare namespace TSMagic {
@@ -107,6 +110,31 @@ export declare namespace TSMagic {
 		export type ShiftRight<A extends Int8> = _Int8.ShiftRight<A>;
 	}
 
+	// --- UInt8 (8-bit Unsigned Integer) ---
+	export namespace UInt8 {
+		export type UInt8 = _UInt8.UInt8;
+		export type Zero = _UInt8.Zero;
+		export type One = _UInt8.One;
+		export type Max = _UInt8.Max;
+		export type FromNumber<N extends number> = _UInt8.FromNumber<N>;
+		export type ToNumber<A extends UInt8> = _UInt8.ToNumber<A>;
+		export type IsZero<A extends UInt8> = _UInt8.IsZero<A>;
+		export type Add<A extends UInt8, B extends UInt8> = _UInt8.Add<A, B>;
+		export type Sub<A extends UInt8, B extends UInt8> = _UInt8.Sub<A, B>;
+		export type Inc<A extends UInt8> = _UInt8.Inc<A>;
+		export type Dec<A extends UInt8> = _UInt8.Dec<A>;
+		export type Equal<A extends UInt8, B extends UInt8> = _UInt8.Equal<A, B>;
+		export type NotEqual<A extends UInt8, B extends UInt8> = _UInt8.NotEqual<A, B>;
+		export type LessThan<A extends UInt8, B extends UInt8> = _UInt8.LessThan<A, B>;
+		export type GreaterThan<A extends UInt8, B extends UInt8> = _UInt8.GreaterThan<A, B>;
+		export type BitwiseNot<A extends UInt8> = _UInt8.BitwiseNot<A>;
+		export type BitwiseAnd<A extends UInt8, B extends UInt8> = _UInt8.BitwiseAnd<A, B>;
+		export type BitwiseOr<A extends UInt8, B extends UInt8> = _UInt8.BitwiseOr<A, B>;
+		export type BitwiseXor<A extends UInt8, B extends UInt8> = _UInt8.BitwiseXor<A, B>;
+		export type ShiftLeft<A extends UInt8> = _UInt8.ShiftLeft<A>;
+		export type ShiftRight<A extends UInt8> = _UInt8.ShiftRight<A>;
+	}
+
 	// --- Char/ASCII ---
 	export namespace Char {
 		export type FromCharCode<N extends number> = _Char.FromCharCode<N>;
@@ -190,5 +218,35 @@ export declare namespace TSMagic {
 		export type Mutable<M> = _Obj.Mutable<M>;
 		export type Partial<M> = _Obj.Partial<M>;
 		export type Required<M> = _Obj.Required<M>;
+	}
+
+	// --- Bool ---
+	export namespace Bool {
+		export type Bool = _Bool.Bool;
+		export type True = _Bool.True;
+		export type False = _Bool.False;
+		export type Not<T extends Bool> = _Bool.Not<T>;
+		export type And<A extends Bool, B extends Bool> = _Bool.And<A, B>;
+		export type Or<A extends Bool, B extends Bool> = _Bool.Or<A, B>;
+		export type Xor<A extends Bool, B extends Bool> = _Bool.Xor<A, B>;
+		export type Nand<A extends Bool, B extends Bool> = _Bool.Nand<A, B>;
+		export type Nor<A extends Bool, B extends Bool> = _Bool.Nor<A, B>;
+		export type If<Cond extends Bool, Then, Else> = _Bool.If<Cond, Then, Else>;
+		export type Implies<A extends Bool, B extends Bool> = _Bool.Implies<A, B>;
+		export type Equal<A extends Bool, B extends Bool> = _Bool.Equal<A, B>;
+	}
+
+	// --- Float (Fixed-Point) ---
+	export namespace Float {
+		export type Float = _Float.Float;
+		export type FloatZero = _Float.FloatZero;
+		export type IsZero<A extends Float> = _Float.IsZero<A>;
+		export type IsNegative<A extends Float> = _Float.IsNegative<A>;
+		export type IsPositive<A extends Float> = _Float.IsPositive<A>;
+		export type FromNumber<N extends number> = _Float.FromNumber<N>;
+		export type ToNumber<A extends Float> = _Float.ToNumber<A>;
+		export type Add<A extends Float, B extends Float> = _Float.Add<A, B>;
+		export type Sub<A extends Float, B extends Float> = _Float.Sub<A, B>;
+		export type Negate<A extends Float> = _Float.Negate<A>;
 	}
 }

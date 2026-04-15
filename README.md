@@ -107,9 +107,12 @@ type R = TSMagic.Arr.Map<[1, 2, 3], ToStr>;  // ["1", "2", "3"]
 
 | Namespace | Description |
 |-----------|-------------|
+| `TSMagic.Bool` | Boolean logic (Not, And, Or, Xor, Nand, Nor, Implies) |
 | `TSMagic.Nat` | Natural numbers (tuple-length based), Add/Sub/Mul/Div/Mod/Pow |
 | `TSMagic.Int` | Signed integers (sign + magnitude), full arithmetic |
 | `TSMagic.Int8` | 8-bit signed integers (two's complement), bitwise ops |
+| `TSMagic.UInt8` | 8-bit unsigned integers (0-255), bitwise ops |
+| `TSMagic.Float` | Fixed-point decimal numbers (sign + integer + fraction) |
 | `TSMagic.Char` | ASCII table, char classification (IsDigit, IsAlpha, etc.) |
 | `TSMagic.Str` | String ops (Split, Join, Replace, Trim, ParseInt, etc.) |
 | `TSMagic.Arr` | Array ops (Map, Filter, Reduce, Slice, Zip, Unique, etc.) |
@@ -117,9 +120,12 @@ type R = TSMagic.Arr.Map<[1, 2, 3], ToStr>;  // ["1", "2", "3"]
 
 ## Roadmap
 
+- [x] Bool (full boolean logic with Xor, Nand, Nor, Implies)
 - [x] Nat (natural numbers, Mul/Div/Mod/Pow)
 - [x] Int (arbitrary signed integers)
-- [x] Int8 (8-bit, bitwise operations)
+- [x] Int8 (8-bit signed, bitwise operations)
+- [x] UInt8 (8-bit unsigned, bitwise operations)
+- [x] Float (fixed-point decimal)
 - [x] Char/ASCII (bidirectional table, classification)
 - [x] String (Split, Join, Replace, Trim, ParseInt, etc.)
 - [x] Array (Map, Filter, Reduce, Zip, Unique, Flat, etc.)
