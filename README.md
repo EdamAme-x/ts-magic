@@ -45,8 +45,8 @@ bun run build
 
 ## Release
 
-1. GitHub で新しい Release を作成（タグ: `v0.1.0` など）
-2. GitHub Actions が自動で npm に publish
+1. Create a new Release on GitHub (tag: `v0.1.0`, etc.)
+2. GitHub Actions will automatically publish to npm
 
 ## License
 
